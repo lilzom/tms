@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sổ tay điện tử - TMS</title>
+	<link rel="shortcut icon" href="public/img/logo_thue.png" />
+
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/fontawesome.min.css">
+    <link rel="stylesheet" href="public/css/all.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/TMS.css">
+    <link href="public/DataTable/datatables.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .editable {
+        border: 1px solid #00f;
+        padding: 4px;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <h1>
+				<a class="logo">Sổ tay điện tử<span class="text-white">Nghiệp vụ TMS</span>
+				</a>
+				</h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="#functions"><span class="fa fa-sticky-note mr-3"></span> Danh sách chức năng</a>
+                    </li>
+                    <li>
+                        <a href="#upgradings"><span class="fa fa-sticky-note mr-3"></span> Danh sách nâng cấp</a>
+                    </li>
+                    <li>
+                        <a href="#decentralizations"><span class="fa fa-sticky-note mr-3"></span> Tạo phiếu phân quyền</a>
+                    </li>
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div id="functions" class="content-section text-justify">
+                <div class="container-fluid">
+                    <div class="row justify">
+                        <div class="col">
+                            <div id="treeView" class="text-info"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button trigger modal -->
+                <button id="exampleModalButton" type="button" class="btn btn-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header text-bg-info">
+                                <h4 class="modal-title fs-5 text-white" id="exampleModalLabel">Chi tiết nâng cấp</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="description"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="decentralizations" class="content-section text-justify">
+                <h2>Hỗ trợ tạo phiếu đề nghị phân quyền</h2>
+                Chức năng đang được xây dựng
+            </div>
+            <div id="upgradings" class="content-section">
+                <div class="container-fluid">
+                    <div id="upgrading_content">
+                        <div class="table-responsive">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Include DataTables JS -->
+    <script src="public/DataTable/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+
+    <script src="data/json.js"></script>
+    <script src="data/upgrading_details.js"></script>
+    <script src="public/js/loading_upgradings.js"></script>
+    <script src="public/DataTable/DataTables-1.13.8/js/dataTables.dataTables.min.js"></script>
+
+    <script src="public/DataTable/datatables.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/showSidebar.js"></script>
+    <script src="public/js/showContent.js"></script>
+    <script src="public/js/showTreeView.js"></script>
+    <script src="public/js/showModal.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let table = new DataTable('#upgradingTable', {
+                ordering: true,
+                order: [
+                    [0, 'desc']
+                ],
+                info: true,
+                lengthMenu: [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, 'Tất cả']
+                ],
+                language: {
+                    lengthMenu: "Hiển thị _MENU_ dòng mỗi trang",
+                    zeroRecords: "Không tìm thấy",
+                    info: "Đang hiển thị _PAGE_ trên tổng _PAGES_ trang",
+                    infoEmpty: "Không tìm thấy",
+                    infoFiltered: "(được lọc trên _MAX_ dòng)",
+                    search: "Nhập để tìm:",
+                    paginate: {
+                        previous: "Trang trước",
+                        next: "Trang sau"
+                    }
+                },
+                placeholder: 'Nhập để tìm',
+                bAutoWidth: false,
+                aoColumns: [{
+                    "sWidth": "5%"
+                }, {
+                    "sWidth": "10%"
+                }, {
+                    "sWidth": "75%"
+                }, {
+                    "sWidth": "10%"
+                }]
+            });
+            // Lấy thẻ input search của DataTables
+            var searchInput = document.querySelector('div.dataTables_filter input');
+
+            // Loại bỏ class "form-control" và "form-control-sm"
+            searchInput.classList.remove('form-control', 'form-control-sm');
+            searchInput.placeholder = 'Nhập phiên bản, phân hệ, nội dung để tìm.';
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+1. Click chuột phải vào file sotayTMS.html
+2. Chọn Open with
+3. Chọn Google Chrome hoặc Firefox
