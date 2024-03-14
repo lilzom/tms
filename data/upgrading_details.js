@@ -1,4 +1,28 @@
 const upgrading_details = [{
+        "version": "6.64",
+        "subsystems": "Hoàn thuế",
+        "link": "https://drive.google.com/drive/folders/1-xgW4a1_6ZzpVt8tSpUj31IcvmEfx7mb?usp=drive_link",
+        "content": [{
+            "id": "1",
+            "descriptions": "Hoàn nộp thừa quỹ GTGT, TTĐB"
+        }]
+    }, {
+        "version": "6.63",
+        "subsystems": "Xử lý tờ khai",
+        "link": "https://drive.google.com/drive/folders/1-nHryEccfSM84eSOWc-nMKBPYoZV8sCs?usp=drive_link",
+        "content": [{
+            "id": "1",
+            "descriptions": "Tổng hợp quyết toán 2023"
+        }]
+    }, {
+        "version": "6.62",
+        "subsystems": "Quản lý nợ",
+        "link": "https://drive.google.com/drive/folders/1-Zmf_D2vd6iSSI3OCB_P8Y3awdSL9eIP?usp=drive_link",
+        "content": [{
+            "id": "1",
+            "descriptions": "Tính tiền chậm nộp tháng"
+        }]
+    }, {
         "version": "6.61",
         "subsystems": "Quản lý nợ",
         "link": "https://drive.google.com/drive/folders/1-XXZFegTh1TbdMkbu8m1l8c0knMpKKjP?usp=drive_link",
